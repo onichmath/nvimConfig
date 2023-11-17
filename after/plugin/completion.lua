@@ -7,7 +7,7 @@ local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 
 luasnip.config.setup {}
--- Require statement for snippets. TODO: Customizje 
+-- Require statement for snippets. TODO: Customizje
 require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup {
@@ -48,5 +48,6 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'copilot' },
   },
 }

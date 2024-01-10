@@ -15,4 +15,5 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open float
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- Run Terminal
-vim.keymap.set('n', '<F5>', ':vnew term://zsh <CR>')
+-- vim.keymap.set('n', '<F5>', ':vnew term://zsh <CR>')
+vim.keymap.set('n', '<leader>t', ':vnew term://zsh <CR>')

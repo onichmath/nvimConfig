@@ -40,6 +40,7 @@ return {
 
           -- Keep original functionality
           require('mason-nvim-dap').default_setup(config)
+          -- require('mason-nvim-dap.automatic_setup')(config)
         end,
         python = function(config)
           config.adapters = {
@@ -52,6 +53,16 @@ return {
           }
           require('mason-nvim-dap').default_setup(config) -- don't forget this!
         end,
+
+        -- codelldb = function(config)
+        --   config.adapters = {
+        --     type = 'executable',
+        --     command = '/home/matthewo/.local/share/nvim/mason/packages/codelldb/extension/adapter/codelldb',
+        --     -- command = '/usr/bin/lldb-vscode', -- adjust as needed, must be absolute path
+        --     name = 'codelldb'
+        --   }
+        --   require('mason-nvim-dap').default_setup(config) -- don't forget this!
+        -- end
 
         cppdbg = function(config)
           config.adapters = {

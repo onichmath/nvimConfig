@@ -20,6 +20,7 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+    -- 'Microsoft/vscode-cpptools',
   },
   config = function()
     local dap = require 'dap'
@@ -28,18 +29,46 @@ return {
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
+      automatic_installation = true,
       automatic_setup = true,
 
       -- You can provide additional configuration to the handlers,
       -- see mason-nvim-dap README for more information
-      handlers = {},
+      handlers = {
+        function(config)
+          -- all sources with no handler get passed here
+
+          -- Keep original functionality
+          require('mason-nvim-dap').default_setup(config)
+        end,
+        python = function(config)
+          config.adapters = {
+            type = "executable",
+            command = "/usr/bin/python3",
+            args = {
+              "-m",
+              "debugpy.adapter",
+            },
+          }
+          require('mason-nvim-dap').default_setup(config) -- don't forget this!
+        end,
+
+        cppdbg = function(config)
+          config.adapters = {
+            id = 'cppdbg',
+            type = 'executable',
+            command = '/home/matthewo/.local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7',
+          }
+          require('mason-nvim-dap').default_setup(config) -- don't forget this!
+        end,
+      },
 
       -- You'll need to check that you have the required things installed
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
-        'debugpy',
-        'cpptools'
+        'python',
+        'cppdbg'
       },
     }
 

@@ -22,3 +22,4 @@ if has('nvim')
 	:tnoremap <A-l> <C-\><C-N><C-w>l
 endif
 
+nmap <C-m> <Plug>MarkdownPreview
